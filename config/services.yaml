@@ -20,5 +20,16 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\EventSubscriber\ThemeEventSubscriber:
+        tags:
+            - { name: kernel.event_subscriber }
+
+    App\EventListener\ThemeDeleteListener:
+        tags:
+            - { name: doctrine.event_listener, event: preRemove }
+
+    App\EventSubscriber\ExceptionSubscriber:
+        tags:
+            - { name: kernel.event_subscriber }
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
